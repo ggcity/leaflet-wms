@@ -1,0 +1,15 @@
+{
+  "name": "@ggcity/leaflet-wms",
+  "version": "0.1.0",
+  "description": "Leaflet WMS Web Components Collection",
+  "main": "index.js",
+  "repository": "https://github.com/ggcity/leaflet-wms",
+  "author": "Rachot Moragraan",
+  "license": "GPL-3.0",
+  "flat": true,
+  "dependencies": {
+    "@ggcity/leaflet-iife": "^1.2.0",
+    "@ggcity/leaflet-map": "ggcity/leaflet-map",
+    "@polymer/polymer": "next"
+  }
+}
