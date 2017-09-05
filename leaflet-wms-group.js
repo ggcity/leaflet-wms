@@ -1,9 +1,9 @@
 import { Element as PolymerElement } from '../../@polymer/polymer/polymer-element.js';
 import { DomRepeat } from '../../@polymer/polymer/lib/elements/dom-repeat.js';
 
-import '../../@ggcity/leaflet-iife/dist/leaflet.js';
-import { LeafletWMSLayer } from './leaflet-wms-layer.js';
-import './leaflet.wms.js';
+import { wms as WMS } from './leaflet.wms.js';
+
+import './leaflet-wms-layer.js';
 
 
 export class LeafletWMSGroup extends PolymerElement {
@@ -62,14 +62,12 @@ export class LeafletWMSGroup extends PolymerElement {
       attribution: this.attribution
     };
 
-    this.wmsSource = L.WMS.source(this.source, this._wmsOptions);
-    this.wmsSource.addTo(this.map); // FIXME: there could be a race condition here for this.map
-
+    this.wmsSource = new WMS.Source(this.source, this._wmsOptions);
     this.subLayers = this.layers;
   }
 
   _mapSet() {
-    //this.wmsSource.addTo(this.map);
+    this.wmsSource.addTo(this.map); // FIXME: there could be a race condition here for this.map
   }
 }
 

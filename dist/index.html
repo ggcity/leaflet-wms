@@ -10,10 +10,8 @@
   <script>
     window.customElements.forcePolyfill = true;
   </script>
-  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
-  <script type="module" src="../../../@ggcity/leaflet-map/leaflet-map.js"></script>
-  <script type="module" src="../../../@ggcity/leaflet-tile-layer/leaflet-tile-layer.js"></script>
-  <script type="module" src="../leaflet-wms-group.js"></script>
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@1.0.10/webcomponents-lite.js"></script>
+  <script src="./bundle.js"></script>
 
   <style>
     html, body {
@@ -34,11 +32,11 @@
     max-zoom="19"
     attribution-prefix="City of Garden Grove"
   >
-    <leaflet-tile-layer
+    <!--leaflet-tile-layer
       base
       url="//www.ci.garden-grove.ca.us/tileserver/styles/gg-basic/{z}/{x}/{y}.png"
       attribution="&copy; OpenStreetMap"
-    ></leaflet-tile-layer>
+    ></leaflet-tile-layer-->
 
     <leaflet-wms-group
       source="//www.ci.garden-grove.ca.us/geoserver/gis/wms"
