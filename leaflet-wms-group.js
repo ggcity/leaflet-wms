@@ -8,11 +8,11 @@ import './leaflet-wms-layer.js';
 
 export class LeafletWMSGroup extends PolymerElement {
   static get template() {
-    return `
-      <template is="dom-repeat" items="{{subLayers}}">
-        <leaflet-wms-layer wms-source="[[wmsSource]]" layer="[[item]]"></leaflet-wms-layer>
-      </template>
-    `;
+    // return `
+    //   <template is="dom-repeat" items="{{subLayers}}">
+    //     <leaflet-wms-layer wms-source="[[wmsSource]]" layer="[[item]]"></leaflet-wms-layer>
+    //   </template>
+    // `;
   }
 
   static get properties() {
@@ -22,16 +22,26 @@ export class LeafletWMSGroup extends PolymerElement {
         observer: '_mapSet'
       },
 
-      source: String,
-      layers: Array,
+      source: {
+        type: String,
+        observer: '_sourceChange',
+        reflectToAttribute: true
+      },
+      layers: {
+        type: Array,
+        observer: '_layersChange',
+        reflectToAttribute: true
+      },
 
       transparent: {
         type: Boolean,
-        value: true
+        value: true,
+        reflectToAttribute: true
       },
       format: {
         type: String,
-        value: 'image/png'
+        value: 'image/png',
+        reflectToAttribute: true
       },
       identify: Boolean,
       minZoom: Number,
@@ -61,9 +71,17 @@ export class LeafletWMSGroup extends PolymerElement {
       maxZoom: this.maxZoom,
       attribution: this.attribution
     };
+  }
+
+  _sourceChange() {
+    if (this.wmsSource) this.wmsSource.removeFrom(this.map);
 
     this.wmsSource = new WMS.Source(this.source, this._wmsOptions);
-    this.subLayers = this.layers;
+    if (this.map) this.wmsSource.addTo(this.map);
+  }
+
+  _layersChange(newValue, oldValue) {
+    this.wmsSource.replaceAllSubLayers(this.layers);
   }
 
   _mapSet() {

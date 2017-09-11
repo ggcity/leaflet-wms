@@ -55,6 +55,10 @@ wms.Source = Layer.extend({
         this.refreshOverlay();
     },
 
+    'onRemove': function () {
+        if (this._map) this._overlay.removeFrom(this._map);
+    },
+
     'getEvents': function() {
         if (this.options.identify) {
             return {'click': this.identify};
@@ -88,6 +92,10 @@ wms.Source = Layer.extend({
         return wms.layer(this, name);
     },
 
+    'getSubLayers': function () {
+        return this._subLayers;
+    },
+
     'addSubLayer': function(name) {
         this._subLayers[name] = true;
         this.refreshOverlay();
@@ -95,6 +103,13 @@ wms.Source = Layer.extend({
 
     'removeSubLayer': function(name) {
         delete this._subLayers[name];
+        this.refreshOverlay();
+    },
+
+    /* Efficient way to swap out all sub layers */
+    'replaceAllSubLayers': function (newSubLayers) {
+        this._subLayers = {};
+        for (var i = 0; i < newSubLayers.length; i++) this._subLayers[newSubLayers[i]] = true;
         this.refreshOverlay();
     },
 

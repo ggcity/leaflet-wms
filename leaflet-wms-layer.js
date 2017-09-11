@@ -5,7 +5,8 @@ export class LeafletWMSLayer extends PolymerElement {
     return {
       wmsSource: Object,
       layer: {
-        type: String
+        type: String,
+        reflectToAttribute: true
       }
     }
   }
@@ -16,6 +17,8 @@ export class LeafletWMSLayer extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
+    
+    if (this.wmsSource === undefined || this.layer === '') return;
     this.wmsSource.addSubLayer(this.layer);
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ggcity/leaflet-wms",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Leaflet WMS Web Components Collection",
   "main": "index.js",
   "repository": "https://github.com/ggcity/leaflet-wms",
@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "@ggcity/leaflet-map": "ggcity/leaflet-map#develop",
-    "@polymer/polymer": "next"
+    "@polymer/polymer": "next",
+    "leaflet": "^1.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
