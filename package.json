@@ -2,7 +2,7 @@
   "name": "@ggcity/leaflet-wms",
   "version": "0.3.0",
   "description": "Leaflet WMS Web Components Collection",
-  "main": "index.js",
+  "main": "main.js",
   "repository": "https://github.com/ggcity/leaflet-wms",
   "author": "Rachot Moragraan",
   "license": "GPL-3.0",
@@ -11,19 +11,8 @@
     "build": "webpack --config build/webpack.prod.js"
   },
   "dependencies": {
-    "@ggcity/leaflet-map": "ggcity/leaflet-map#develop",
+    "@ggcity/leaflet-map": "0.4.0",
     "@polymer/polymer": "next",
     "leaflet": "^1.2.0"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-minify-webpack-plugin": "^0.2.0",
-    "clean-webpack-plugin": "^0.1.16",
-    "css-loader": "^0.28.7",
-    "file-loader": "^0.11.2",
-    "style-loader": "^0.18.2",
-    "webpack": "^3.5.5",
-    "webpack-merge": "^4.1.0"
   }
 }
