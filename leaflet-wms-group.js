@@ -1,18 +1,18 @@
 import { Element as PolymerElement } from '../../@polymer/polymer/polymer-element.js';
 import { DomRepeat } from '../../@polymer/polymer/lib/elements/dom-repeat.js';
 
-import '../../@ggcity/leaflet-iife/dist/leaflet.js';
-import { LeafletWMSLayer } from './leaflet-wms-layer.js';
-import './leaflet.wms.js';
+import { wms as WMS } from './leaflet.wms.js';
+
+import './leaflet-wms-layer.js';
 
 
 export class LeafletWMSGroup extends PolymerElement {
   static get template() {
-    return `
-      <template is="dom-repeat" items="{{subLayers}}">
-        <leaflet-wms-layer wms-source="[[wmsSource]]" layer="[[item]]"></leaflet-wms-layer>
-      </template>
-    `;
+    // return `
+    //   <template is="dom-repeat" items="{{subLayers}}">
+    //     <leaflet-wms-layer wms-source="[[wmsSource]]" layer="[[item]]"></leaflet-wms-layer>
+    //   </template>
+    // `;
   }
 
   static get properties() {
@@ -22,16 +22,26 @@ export class LeafletWMSGroup extends PolymerElement {
         observer: '_mapSet'
       },
 
-      source: String,
-      layers: Array,
+      source: {
+        type: String,
+        observer: '_sourceChange',
+        reflectToAttribute: true
+      },
+      layers: {
+        type: Array,
+        observer: '_layersChange',
+        reflectToAttribute: true
+      },
 
       transparent: {
         type: Boolean,
-        value: true
+        value: true,
+        reflectToAttribute: true
       },
       format: {
         type: String,
-        value: 'image/png'
+        value: 'image/png',
+        reflectToAttribute: true
       },
       identify: Boolean,
       minZoom: Number,
@@ -61,15 +71,21 @@ export class LeafletWMSGroup extends PolymerElement {
       maxZoom: this.maxZoom,
       attribution: this.attribution
     };
+  }
 
-    this.wmsSource = L.WMS.source(this.source, this._wmsOptions);
-    this.wmsSource.addTo(this.map); // FIXME: there could be a race condition here for this.map
+  _sourceChange() {
+    if (this.wmsSource) this.wmsSource.removeFrom(this.map);
 
-    this.subLayers = this.layers;
+    this.wmsSource = new WMS.Source(this.source, this._wmsOptions);
+    if (this.map) this.wmsSource.addTo(this.map);
+  }
+
+  _layersChange(newValue, oldValue) {
+    this.wmsSource.replaceAllSubLayers(this.layers);
   }
 
   _mapSet() {
-    //this.wmsSource.addTo(this.map);
+    this.wmsSource.addTo(this.map); // FIXME: there could be a race condition here for this.map
   }
 }
 

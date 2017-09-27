@@ -24,20 +24,20 @@ Usage
   zoom="13"
   min-zoom="11"
   max-zoom="19"
-  attribution-prefix="City of Garden Grove"
->
+  attribution-prefix="City of Garden Grove">
+
   <leaflet-tile-layer
     base
     url="//www.ci.garden-grove.ca.us/tileserver/styles/gg-basic/{z}/{x}/{y}.png"
-    attribution="&copy; OpenStreetMap"
-  ></leaflet-tile-layer>
+    attribution="&copy; OpenStreetMap">
+  </leaflet-tile-layer>
 
   <leaflet-wms-group
     source="//www.ci.garden-grove.ca.us/geoserver/gis/wms"
     layers='["gis:city_council_districts", "gis:flood_hazard_area"]'
     transparent
-    format="image/png"
-  ></leaflet-wms-group>
+    format="image/png">
+  </leaflet-wms-group>
 
 </leaflet-map>
 ```
