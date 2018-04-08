@@ -6,6 +6,8 @@ Leaflet WMS web components collection. Requires Polymer 3.x.
 Installation
 ------------
 
+![]({{site.baseurl}}//_20170619_194551.jpg)
+
 This currently comes in as pure ES6 only.
 
     $ yarn add @ggcity/leaflet-wms
