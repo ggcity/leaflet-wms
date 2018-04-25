@@ -44,6 +44,10 @@ export class LeafletWMSGroup extends PolymerElement {
         reflectToAttribute: true
       },
       identify: Boolean,
+      infoFormat: {
+        type: String,
+        value: 'text/html'
+      },
       minZoom: Number,
       maxZoom: Number,
       attribution: String,
@@ -67,6 +71,7 @@ export class LeafletWMSGroup extends PolymerElement {
       transparent: this.transparent,
       format: this.format,
       identify: this.identify,
+      info_format: this.infoFormat,
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
       attribution: this.attribution
