@@ -66,6 +66,10 @@ export class LeafletWMSGroup extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
+  }
+
+  _sourceChange() {
+    if (this.wmsSource) this.wmsSource.removeFrom(this.map);
 
     this._wmsOptions = {
       transparent: this.transparent,
@@ -76,17 +80,16 @@ export class LeafletWMSGroup extends PolymerElement {
       maxZoom: this.maxZoom,
       attribution: this.attribution
     };
-  }
-
-  _sourceChange() {
-    if (this.wmsSource) this.wmsSource.removeFrom(this.map);
 
     this.wmsSource = new WMS.Source(this.source, this._wmsOptions);
     if (this.map) this.wmsSource.addTo(this.map);
+
+    this._layersChange();
   }
 
   _layersChange(newValue, oldValue) {
-    this.wmsSource.replaceAllSubLayers(this.layers);
+    // FIXME: use promise instead please
+    if (this.wmsSource) this.wmsSource.replaceAllSubLayers(this.layers);
   }
 
   _mapSet() {
