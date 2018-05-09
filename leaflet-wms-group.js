@@ -32,7 +32,6 @@ export class LeafletWMSGroup extends PolymerElement {
         observer: '_layersChange',
         reflectToAttribute: true
       },
-
       transparent: {
         type: Boolean,
         value: true,
@@ -41,6 +40,11 @@ export class LeafletWMSGroup extends PolymerElement {
       format: {
         type: String,
         value: 'image/png',
+        reflectToAttribute: true
+      },
+      infoFormat: {
+        type: String,
+        value: 'text/html',
         reflectToAttribute: true
       },
       identify: Boolean,
@@ -78,8 +82,11 @@ export class LeafletWMSGroup extends PolymerElement {
       info_format: this.infoFormat,
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
-      attribution: this.attribution
+      attribution: this.attribution,
+      info_format: (this.infoFormat === undefined) ? 'text/html' : this.infoFormat
     };
+
+    console.log(this._wmsOptions);
 
     this.wmsSource = new WMS.Source(this.source, this._wmsOptions);
     if (this.map) this.wmsSource.addTo(this.map);
