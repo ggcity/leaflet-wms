@@ -86,8 +86,6 @@ export class LeafletWMSGroup extends PolymerElement {
       info_format: (this.infoFormat === undefined) ? 'text/html' : this.infoFormat
     };
 
-    console.log(this._wmsOptions);
-
     this.wmsSource = new WMS.Source(this.source, this._wmsOptions);
     if (this.map) this.wmsSource.addTo(this.map);
 

@@ -1,6 +1,6 @@
 {
   "name": "@ggcity/leaflet-wms",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Leaflet WMS Web Components Collection",
   "main": "main.js",
   "repository": "https://github.com/ggcity/leaflet-wms",
